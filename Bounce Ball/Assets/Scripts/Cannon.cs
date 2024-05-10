@@ -18,29 +18,30 @@ public class Cannon : MonoBehaviour
 
     void Update()
     {
-        if(Input.touchCount > 0)
-        {
-            Touch toque = Input.GetTouch(0);
-            Vector2 posToque = Camera.main.ScreenToWorldPoint(toque.position);
-            Vector2 direcao = new Vector2(posToque.x - transform.position.x, posToque.y - transform.position.y);
-
-            if(!gameManager.movCamera)
-                transform.right = direcao;
-
-            if(gameManager.podeAtirar && !gameManager.movCamera)
+        if(gameManager.comecarJogo)
+            if(Input.touchCount > 0)
             {
-                Potenciometro(direcao);
+                Touch toque = Input.GetTouch(0);
+                Vector2 posToque = Camera.main.ScreenToWorldPoint(toque.position);
+                Vector2 direcao = new Vector2(posToque.x - transform.position.x, posToque.y - transform.position.y);
 
-                if(toque.phase == TouchPhase.Ended)
+                if(!gameManager.movCamera)
+                    transform.right = direcao;
+
+                if(gameManager.podeAtirar && !gameManager.movCamera)
                 {
-                    bala = Instantiate(prefab_Bala, cano.transform.position, quaternion.identity);
-                    Rigidbody2D rb_Bala = bala.GetComponent<Rigidbody2D>();
-                    rb_Bala.AddForce(direcao * 100, ForceMode2D.Force);
-                    barraPotencia.transform.localScale = tamanhoInicialBarra;
-                    Destroy(bala,6);
+                    Potenciometro(direcao);
+
+                    if(toque.phase == TouchPhase.Ended)
+                    {
+                        bala = Instantiate(prefab_Bala, cano.transform.position, quaternion.identity);
+                        Rigidbody2D rb_Bala = bala.GetComponent<Rigidbody2D>();
+                        rb_Bala.AddForce(direcao * 100, ForceMode2D.Force);
+                        barraPotencia.transform.localScale = tamanhoInicialBarra;
+                        Destroy(bala,6);
+                    }
                 }
             }
-        }
     }
 
     void Potenciometro(Vector2 _direcao)

@@ -1,3 +1,4 @@
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
@@ -11,7 +12,7 @@ public class GameManager : MonoBehaviour
     public bool comecarJogo;
     public bool movCamera, podeAtirar;
     [SerializeField]private int faseAtual, quantidadeFase, contadorTentativa;
-    [SerializeField]private GameObject painelBotoesCam, painelVitoria;
+    [SerializeField]private GameObject painelBotoesCam, painelVitoria, painelPause;
     [SerializeField]private Transform posCamera, posCanhao, posChegada;
     [SerializeField]private Transform[] transformCamera, transformCanhao, transformChegada;
     [SerializeField]private Vector2[] contadorRecord;
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
     private Cannon cannon;
 
     
-
+    
 
 
     void Awake() 
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour
         {
             MostraInformacao();
             SeguirBola();
-            ReiniciaTentativa();
+            LiberarDisparo();
             AbrirPainelVitoria();
         }
     }
@@ -70,7 +71,7 @@ public class GameManager : MonoBehaviour
         contadorTentativa = 0;
     }
 
-    void ReiniciaTentativa()
+    void LiberarDisparo()
     {
         if(!venceu)
         {
@@ -81,13 +82,6 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(TempoDeResposta());
             }  
         }
-    }
-
-    public void ReiniciarFase()
-    {
-        venceu = false;
-        cannon.bala = null;
-        painelVitoria.SetActive(false);
     }
 
     void SeguirBola()
@@ -101,6 +95,18 @@ public class GameManager : MonoBehaviour
                 posCamera.position = Vector2.MoveTowards(posCamera.position, cannon.bala.transform.position, 1f);
             }
         }   
+    }
+
+    void DelayJogo()
+    {
+        comecarJogo = true;
+    }
+
+    public void BTN_ReiniciarFase()
+    {
+        venceu = false;
+        AtualizaInformacao();
+        painelVitoria.SetActive(false);
     }
 
     public void BTN_PassarDeFase() //Botão passar de fase
@@ -130,6 +136,41 @@ public class GameManager : MonoBehaviour
             posCamera.position = transformCamera[faseAtual].position;
             painelBotoesCam.SetActive(false);
             StartCoroutine(TempoDeResposta());
+        }
+    }
+
+    public void BTN_PausarJogo()
+    {
+        comecarJogo = false;
+        painelPause.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void BTN_Continue()
+    {
+        Time.timeScale = 1;
+        Invoke(nameof(DelayJogo),0.2f);
+        painelPause.SetActive(false);
+    }
+
+    public void BTN_VoltarMenu()
+    {
+        Time.timeScale = 1;
+        painelPause.SetActive(false);
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void BTN_ReiniciarJogo()
+    {
+        Time.timeScale = 1;
+        Invoke(nameof(DelayJogo),0.2f);
+        Destroy(cannon.bala);
+        AtualizaInformacao();
+        painelPause.SetActive(false);
+        if(painelBotoesCam.activeInHierarchy)
+        {
+            movCamera = false;
+            painelBotoesCam.SetActive(false);
         }
     }
 

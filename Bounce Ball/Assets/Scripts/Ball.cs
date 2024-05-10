@@ -10,6 +10,7 @@ public class Ball : MonoBehaviour
         {
             GameManager.venceu = true;
             print("Chegou!!");
+            Destroy(gameObject, 0.3f);
         }
     }
 }
