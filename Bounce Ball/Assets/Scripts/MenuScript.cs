@@ -7,6 +7,10 @@ using TMPro;
 public class MenuScript : MonoBehaviour
 {
     [SerializeField]private TMP_Text txt_InfoBuild;
+
+    public GameObject painel_Fases;
+
+    PlayerPrefs faseID;
     
     
     void Start()
@@ -14,7 +18,6 @@ public class MenuScript : MonoBehaviour
         InformacaoJogo();
     }
 
-    // Update is called once per frame
     void Update()
     {
     
@@ -22,7 +25,7 @@ public class MenuScript : MonoBehaviour
 
     public void ComecaJogo()
     {
-        SceneManager.LoadScene("Game");
+        //SceneManager.LoadScene("Game");
     }
 
     public void Créditos()
