@@ -32,6 +32,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        faseAtual = FaseID.faseID;
         painelVitoria.SetActive(false);
         comecarJogo= true;
         AtualizaInformacao();
@@ -52,7 +53,10 @@ public class GameManager : MonoBehaviour
     void AbrirPainelVitoria()
     {
         if(venceu)
+        {
             painelVitoria.SetActive(true);
+            ArmazenaInformacoes();
+        }
     }
     
 
@@ -102,6 +106,11 @@ public class GameManager : MonoBehaviour
         comecarJogo = true;
     }
 
+    void ArmazenaInformacoes()
+    {
+        PlayerPrefs.SetInt("liberar", faseAtual);
+    }
+
     public void BTN_ReiniciarFase()
     {
         venceu = false;
@@ -113,10 +122,12 @@ public class GameManager : MonoBehaviour
     {
         if(venceu)
         {
+            
             cannon.bala = null;
             faseAtual++;
             AtualizaInformacao();
-            print(faseAtual);
+            ArmazenaInformacoes();
+            print(FaseID.faseID);
             venceu = false;
         }
     }
