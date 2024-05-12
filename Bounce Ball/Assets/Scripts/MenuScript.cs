@@ -11,7 +11,7 @@ public class MenuScript : MonoBehaviour
     [SerializeField]private TMP_Text txt_InfoBuild;
 
     public GameObject painel_Fases;
-    private int fasePref = 0;
+    private int fasesConcluidas;
 
     [SerializeField] private Button[] btn_Fases;
 
@@ -24,27 +24,34 @@ public class MenuScript : MonoBehaviour
         painel_Fases.SetActive(false);
         InformacaoJogo();
         ArmazenaFases();
+        ArmazenaInformacoes();
         LiberaFases();
     }
 
     void ArmazenaFases()
     {
-        
         btn_Fases = new Button[painel_Fases.transform.childCount];
         for(int _index=0; _index < painel_Fases.transform.childCount; _index++)
         {
             btn_Fases[_index] = painel_Fases.transform.GetChild(_index).GetComponent<Button>();
-            btn_Fases[_index].interactable = false;
+            if(_index > 0)
+                btn_Fases[_index].interactable = false;
         }
     }
     
+    void ArmazenaInformacoes()
+    {
+        PlayerPrefs.SetInt("liberar", FaseID.idFaseConcluida);
+        fasesConcluidas = PlayerPrefs.GetInt("liberar");
+    }
 
     void LiberaFases()
     {
-        fasePref = PlayerPrefs.GetInt("liberar");
-        for(int i=0; i <= fasePref; i++)
-            btn_Fases[i].interactable = true;
-
+        for(int i=0; i <= fasesConcluidas; i++)
+        {
+            btn_Fases[i].interactable = true; 
+            print("FaseConcluidas " + fasesConcluidas);
+        }
     }
 
     public void ComecaJogo()
@@ -76,5 +83,7 @@ public class MenuScript : MonoBehaviour
     void RemoveKeys()
     {
         PlayerPrefs.DeleteAll();
+        fasesConcluidas = 0;
+        print("limpo chefe");
     }
 }

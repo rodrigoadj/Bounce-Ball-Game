@@ -4,5 +4,5 @@ using UnityEngine;
 
 public class FaseID : MonoBehaviour
 {
-    public static int faseID;
+    public static int faseID, idFaseConcluida;
 }
