@@ -1,2 +1,4 @@
 # Bounce-Ball-Game
-Projeto desenvolvido com foco em estudo sobre animação 2D de formas geométricas
+Esse projeto será publicado e divulgado como um projeto complementar de ACCs (Atividades Complementares) para conclusão da minha faculdade.
+Nesse projeto eu busco aprender mais sobre animação 2D priorizando formas geométricas.
+
