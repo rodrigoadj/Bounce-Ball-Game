@@ -4,23 +4,22 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using System;
 
 public class MenuScript : MonoBehaviour
 {
-    [SerializeField]private TMP_Text txt_InfoBuild;
+    [SerializeField]private TMP_Text txt_InfoBuild, txt_popUp;
 
     public GameObject painel_Fases;
-    private int fasesConcluidas;
+    private int fasesConcluidas, chave;
 
     [SerializeField] private Button[] btn_Fases;
 
-    [SerializeField] Button removepref;
+    [SerializeField] Button removeDados;
     
 
     void Start()
     {
-        removepref.onClick.AddListener(() => RemoveKeys());
+        removeDados.onClick.AddListener(() => StartCoroutine(RemoveDados()));
         painel_Fases.SetActive(false);
         InformacaoJogo();
         ArmazenaFases();
@@ -80,10 +79,28 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
-    void RemoveKeys()
+    IEnumerator RemoveDados()
     {
-        PlayerPrefs.DeleteAll();
-        fasesConcluidas = 0;
-        print("limpo chefe");
+        chave++;
+        print(chave);
+        switch(chave)
+        {
+            case 1:
+                txt_popUp.text = "Você deseja mesmo apagar tudo?";
+            break;
+
+            case 2:
+                txt_popUp.text = "Ultima chance para voltar atrás. Você tem certeza?";
+            break;
+
+            case 3:
+                 txt_popUp.text = "Registros apagados com sucesso";
+                PlayerPrefs.DeleteAll();
+                fasesConcluidas = 0;
+                chave = 0;
+                yield return new WaitForSeconds(1);
+                txt_popUp.text = "";
+            break;
+        }
     }
 }
