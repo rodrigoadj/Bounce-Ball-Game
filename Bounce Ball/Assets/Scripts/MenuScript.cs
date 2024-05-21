@@ -34,7 +34,12 @@ public class MenuScript : MonoBehaviour
         {
             btn_Fases[_index] = painel_Fases.transform.GetChild(_index).GetComponent<Button>();
             if(_index > 0)
-                btn_Fases[_index].interactable = false;
+            {
+                if(btn_Fases[_index].gameObject.name == "BTN_Voltar")
+                    return;
+                else
+                    btn_Fases[_index].interactable = false;
+            }  
         }
     }
     
@@ -58,8 +63,21 @@ public class MenuScript : MonoBehaviour
         painel_Fases.SetActive(true);
     }
 
-    public void Créditos()
+    public void Créditos() //créditos SFX
     {
+        /*
+        https://pixabay.com/pt/sound-effects/hitech-logo-165392/
+        https://pixabay.com/pt/sound-effects/life-in-a-droplet-128269/
+        https://pixabay.com/pt/sound-effects/dripping-water-nature-sounds-8050/
+        https://pixabay.com/pt/sound-effects/selection-sounds-73225/
+        https://pixabay.com/pt/sound-effects/electronic-hit-98242/
+        https://pixabay.com/pt/sound-effects/interface-1-126517/
+        https://pixabay.com/pt/sound-effects/paft-drunk-drums-efx-1574-206584/
+        https://pixabay.com/pt/sound-effects/riser-and-hit-194451/
+        https://pixabay.com/pt/sound-effects/electronic-glitter-68293/
+        https://pixabay.com/pt/sound-effects/echo-chime-chime-89653/
+        https://pixabay.com/pt/sound-effects/short-echo-fart-185251/
+        */
         
     }
     
