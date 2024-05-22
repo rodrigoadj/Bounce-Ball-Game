@@ -58,8 +58,8 @@ A ideia aqui é desenvolver um jogo completo, mobile, que eu possa manipular os 
 - [ ]  Transição de Cenas
 - [ ]  Transição de Fases
 - [ ]  Efeitos sonoros
-- [ ]  Música do jogo
-- [ ]  Efeitos sonoros do menu e HUD
+- [x]  Música do jogo
+- [x]  Efeitos sonoros do menu e HUD
 - [ ]  Tradução (Para o Final)(Opcional)
 - [ ]  Visual do Menu
 - [ ]  Visual da HUD
