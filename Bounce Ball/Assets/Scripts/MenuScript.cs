@@ -90,6 +90,7 @@ public class MenuScript : MonoBehaviour
 
     public void Sair()
     {
+        
         Application.Quit();
     }
     public void IndexFaseButton(int ID=0)
