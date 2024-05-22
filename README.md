@@ -2,7 +2,9 @@
 Esse projeto será publicado e divulgado como um projeto complementar de ACCs (Atividades Complementares) para conclusão da minha faculdade.
 Nesse projeto eu busco aprender mais sobre animação 2D priorizando formas geométricas.
 
-## Descrições Técnica do Projeto
+A ideia aqui é desenvolver um jogo completo, mobile, que eu possa manipular os elementos do jogo e aplicar tudo que estou aprendendo de animação 2D com formas geométricas. É um projeto simples somente para aprender novas técnicas, novos programas de animação 2D e fortalecer os conceitos de animação frame a frame e animação por código.
+
+## Descrição Técnica do Projeto
 
 - Sinopse
     
