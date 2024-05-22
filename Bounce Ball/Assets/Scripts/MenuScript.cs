@@ -8,7 +8,6 @@ using TMPro;
 public class MenuScript : MonoBehaviour
 {
     [SerializeField]private TMP_Text txt_InfoBuild, txt_popUp;
-
     public GameObject painel_Fases;
     private int fasesConcluidas, chave;
 
@@ -90,7 +89,6 @@ public class MenuScript : MonoBehaviour
 
     public void Sair()
     {
-        
         Application.Quit();
     }
     public void IndexFaseButton(int ID=0)
@@ -99,7 +97,7 @@ public class MenuScript : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
-    IEnumerator RemoveDados()
+    public IEnumerator RemoveDados()
     {
         chave++;
         print(chave);
@@ -114,10 +112,11 @@ public class MenuScript : MonoBehaviour
             break;
 
             case 3:
-                 txt_popUp.text = "Registros apagados com sucesso";
+                txt_popUp.text = "Registros apagados com sucesso";
                 PlayerPrefs.DeleteAll();
                 fasesConcluidas = 0;
                 chave = 0;
+                SoundManager.intanceSound.PlayResetDados();
                 yield return new WaitForSeconds(1);
                 txt_popUp.text = "";
             break;
