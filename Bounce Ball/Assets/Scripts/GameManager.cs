@@ -32,7 +32,6 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Invoke(nameof(SoundManager.intanceSound.PlayListGame),1f);
         faseAtual = FaseID.faseID;
         painelVitoria.SetActive(false);
         comecarJogo= true;

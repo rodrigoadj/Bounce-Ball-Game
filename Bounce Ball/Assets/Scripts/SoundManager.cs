@@ -22,7 +22,8 @@ public class SoundManager : MonoBehaviour
     {
         if(SceneManager.GetActiveScene().buildIndex == 0)
             Invoke(nameof(PlayListMenu),1f);
-        else if(SceneManager.GetActiveScene().buildIndex == 1)
+        
+        if(SceneManager.GetActiveScene().buildIndex == 1)
             Invoke(nameof(PlayListGame),1f);
     }
 
@@ -49,6 +50,7 @@ public class SoundManager : MonoBehaviour
             audioReprodutorSource[1].clip = SFX_PlayListMenu[Random.Range(0,SFX_PlayListMenu.Length)];
             audioReprodutorSource[1].Play();
         }
+        print("não parou Menu");
         Invoke(nameof(PlayListMenu),1f);
     }
 
@@ -56,13 +58,14 @@ public class SoundManager : MonoBehaviour
     {
         if(audioReprodutorSource[1].isPlaying)
         {
-            return;
+
         }
         else
         {
             audioReprodutorSource[1].clip = SFX_PlayListGame[Random.Range(0,SFX_PlayListGame.Length)];
             audioReprodutorSource[1].Play();
         }
+        print("não parou Game");
         Invoke(nameof(PlayListGame),1f);
     }
 
