@@ -53,10 +53,10 @@ A ideia aqui é desenvolver um jogo completo, mobile, que eu possa manipular os 
 - [ ]  Brilho onde a Bola Bateu
 - [ ]  Animação ao Disparar
 - [ ]  Animação da bola Colidindo (Opcional)
-- [ ]  Animação de Menus
+- [x]  Animação de Menus
 - [ ]  Animação de Vitória (Opcional)
-- [ ]  Transição de Cenas
-- [ ]  Transição de Fases
+- [x]  Transição de Cenas
+- [x]  Transição de Fases
 - [ ]  Efeitos sonoros
 - [x]  Música do jogo
 - [x]  Efeitos sonoros do menu e HUD
