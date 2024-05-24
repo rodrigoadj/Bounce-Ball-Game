@@ -38,7 +38,7 @@ public class Cannon : MonoBehaviour
                         Rigidbody2D rb_Bala = bala.GetComponent<Rigidbody2D>();
                         rb_Bala.AddForce(direcao * 100, ForceMode2D.Force);
                         barraPotencia.transform.localScale = tamanhoInicialBarra;
-                        Destroy(bala,6);
+                        Destroy(bala,5);
                     }
                 }
             }

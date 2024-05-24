@@ -4,16 +4,20 @@ using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
+using Unity.Mathematics;
 
 public class MenuScript : MonoBehaviour
 {
-    [SerializeField]private GameObject[] imgOBJ;
+    [SerializeField]private GameObject[] imgOBJ, prefab_AreaEstrelas;
     [SerializeField]private TMP_Text txt_InfoBuild, txt_popUp;
     public GameObject painel_Fases;
     private int fasesConcluidas, chave;
     [SerializeField] private Button[] btn_Fases;
     [SerializeField] Button removeDados;
     [SerializeField]private AnimacaoMenu animMenu;
+
+    public GameObject[] filhos = new GameObject[3];
+    public GameObject[] filhoFilho = new GameObject[3];
 
     
   
@@ -42,6 +46,7 @@ public class MenuScript : MonoBehaviour
         for(int _index=0; _index < painel_Fases.transform.childCount; _index++)
         {
             btn_Fases[_index] = painel_Fases.transform.GetChild(_index).GetComponent<Button>();
+
             if(_index > 0)
             {
                 if(btn_Fases[_index].gameObject.name == "BTN_Voltar")
@@ -58,10 +63,20 @@ public class MenuScript : MonoBehaviour
         fasesConcluidas = PlayerPrefs.GetInt("liberar");
     }
 
-    void LiberaFases()
+    void LiberaFases() //TIRE AS ESTRELAS DEIXE APENAS COM 1 PARA O TIRO UNICO
     {
         for(int i=0; i <= fasesConcluidas; i++)
         {
+            for(int j=0; j<3; j++)
+            {
+                filhos[j] = prefab_AreaEstrelas[i].transform.GetChild(j).gameObject;
+                print(filhos[j]);
+                
+                filhoFilho[j] = filhos[j].transform.GetChild(j).gameObject;
+                print(filhoFilho[j].name);
+                filhoFilho[FaseID.countTentativas].SetActive(true);
+            }
+
             btn_Fases[i].interactable = true; 
             print("FaseConcluidas " + fasesConcluidas);
         }
@@ -143,5 +158,11 @@ public class MenuScript : MonoBehaviour
                 txt_popUp.text = "";
             break;
         }
+    }
+
+    public void ReiniciaBotao()
+    {
+        chave = 0;
+        txt_popUp.text = "";
     }
 }

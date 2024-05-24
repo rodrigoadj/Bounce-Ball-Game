@@ -3,7 +3,14 @@ using UnityEngine;
 public class Ball : MonoBehaviour
 {
     AudioSource somColisao;
+    GameManager gameManager;
     
+    void Start()
+    {
+        gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
+        gameManager.contadorTentativa++;
+    }
+
     private void OnCollisionEnter2D(Collision2D coll) 
     {
         GameManager.contadorQuicada++;
@@ -13,7 +20,8 @@ public class Ball : MonoBehaviour
         if(coll.gameObject.CompareTag("Chegada"))
         {
             GameManager.venceu = true;
-            print("Chegou!!");
+            gameManager.AbrirPainelVitoria();
+            //print("Chegou!!");
             Destroy(gameObject, 0.3f);
         }
     }

@@ -11,11 +11,12 @@ public class GameManager : MonoBehaviour
     public static bool venceu;
     public bool comecarJogo;
     public bool movCamera, podeAtirar;
-    [SerializeField]private int faseAtual, quantidadeFase, contadorTentativa;
+    public int faseAtual, quantidadeFase, contadorTentativa;
     [SerializeField]private GameObject painelBotoesCam, painelVitoria, painelPause;
     [SerializeField]private Transform posCamera, posCanhao, posChegada;
     [SerializeField]private Transform[] transformCamera, transformCanhao, transformChegada;
     [SerializeField]private Vector2[] contadorRecord;
+    [SerializeField]private GameObject[] estrelas = new GameObject[3];
     private Button btn_MovCam;
     private Cannon cannon;
 
@@ -43,23 +44,38 @@ public class GameManager : MonoBehaviour
     {
         if(comecarJogo)
         {
-            MostraInformacao();
+            MostrarInformacao();
             SeguirBola();
             LiberarDisparo();
-            AbrirPainelVitoria();
+            //AbrirPainelVitoria();
         }
     }
-    
-    void AbrirPainelVitoria()
+
+    void MostrarEstrelas()
     {
         if(venceu)
         {
-            painelVitoria.SetActive(true);
+            if(contadorTentativa == 1)
+            {
+                estrelas[0].SetActive(true);          
+                estrelas[1].SetActive(true);     
+                estrelas[2].SetActive(true);          
+            }
+
+            if(contadorTentativa > 1 && contadorTentativa <= 3)
+            {
+                estrelas[1].SetActive(true);     
+                estrelas[2].SetActive(true);    
+            }
+            
+            if(contadorTentativa > 3 && contadorTentativa <= 7)
+            {
+                estrelas[0].SetActive(true);
+            }
         }
     }
-    
 
-    void MostraInformacao() // Implementar A UI
+    void MostrarInformacao() // Implementar A UI
     {
         contadorRecord[faseAtual] = new Vector2(contadorQuicada,contadorTentativa);
     }
@@ -105,28 +121,39 @@ public class GameManager : MonoBehaviour
         comecarJogo = true;
     }
 
-    // void ArmazenaInformacoes()
-    // {
-    //     PlayerPrefs.SetInt("liberar", faseAtual);
-    // }
+    public void AbrirPainelVitoria()
+    {
+        if(venceu)
+        {
+            MostrarEstrelas();
+            btn_MovCam.interactable = false;
+            painelVitoria.SetActive(true);
+        }
+    }
 
     public void BTN_ReiniciarFase()
     {
         venceu = false;
         AtualizaInformacao();
         painelVitoria.SetActive(false);
+        for(int i=0; i<estrelas.Length; i++)
+            estrelas[i].SetActive(false);
     }
 
     public void BTN_PassarDeFase() //Botão passar de fase
     {
         if(venceu)
         {
-            
             cannon.bala = null;
             faseAtual++;
             if(faseAtual > FaseID.idFaseConcluida)
                 FaseID.idFaseConcluida = faseAtual;
             AtualizaInformacao();
+            for(int i=0; i<estrelas.Length; i++)
+            {
+                estrelas[i].SetActive(false);
+                FaseID.countTentativas = i;
+            }
             venceu = false;
         }
     }
