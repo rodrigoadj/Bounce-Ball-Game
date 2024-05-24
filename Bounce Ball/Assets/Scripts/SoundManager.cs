@@ -50,7 +50,7 @@ public class SoundManager : MonoBehaviour
             audioReprodutorSource[1].clip = SFX_PlayListMenu[Random.Range(0,SFX_PlayListMenu.Length)];
             audioReprodutorSource[1].Play();
         }
-        print("não parou Menu");
+        //print("não parou Menu");
         Invoke(nameof(PlayListMenu),1f);
     }
 
@@ -65,7 +65,7 @@ public class SoundManager : MonoBehaviour
             audioReprodutorSource[1].clip = SFX_PlayListGame[Random.Range(0,SFX_PlayListGame.Length)];
             audioReprodutorSource[1].Play();
         }
-        print("não parou Game");
+        //print("não parou Game");
         Invoke(nameof(PlayListGame),1f);
     }
 

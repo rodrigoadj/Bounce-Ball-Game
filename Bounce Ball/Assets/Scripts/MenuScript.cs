@@ -7,23 +7,33 @@ using TMPro;
 
 public class MenuScript : MonoBehaviour
 {
+    [SerializeField]private GameObject[] imgOBJ;
     [SerializeField]private TMP_Text txt_InfoBuild, txt_popUp;
     public GameObject painel_Fases;
     private int fasesConcluidas, chave;
-
     [SerializeField] private Button[] btn_Fases;
-
     [SerializeField] Button removeDados;
-    
+    [SerializeField]private AnimacaoMenu animMenu;
 
+    
+  
     void Start()
     {
+        GeraBarreira(); 
+        StartCoroutine(animMenu.InstanciaObjeto(15));
         removeDados.onClick.AddListener(() => StartCoroutine(RemoveDados()));
         painel_Fases.SetActive(false);
         InformacaoJogo();
         ArmazenaFases();
         ArmazenaInformacoes();
         LiberaFases();
+    }
+
+    void Update()
+    {
+        if(animMenu.boolTemporizada)
+            painel_Fases.SetActive(true);
+
     }
 
     void ArmazenaFases()
@@ -57,9 +67,21 @@ public class MenuScript : MonoBehaviour
         }
     }
 
+    void GeraBarreira()
+    {
+        imgOBJ[0].transform.localScale = new Vector2(transform.localScale.x,animMenu.alturaTotal);
+        imgOBJ[0].transform.position = new Vector2(-animMenu.larguraDividida,0);
+        imgOBJ[1].transform.localScale = new Vector2(transform.localScale.x,animMenu.alturaTotal);
+        imgOBJ[1].transform.position = new Vector2(animMenu.larguraDividida,0);
+        imgOBJ[2].transform.localScale = new Vector2(animMenu.larguraTotal,transform.localScale.y);
+        imgOBJ[2].transform.position = new Vector2(0,-animMenu.alturaDividida);
+        imgOBJ[3].transform.localScale = new Vector2(animMenu.larguraTotal,transform.localScale.y);
+        imgOBJ[3].transform.position = new Vector2(0,animMenu.alturaDividida);
+    }
+
     public void ComecaJogo()
     {
-        painel_Fases.SetActive(true);
+        StartCoroutine(animMenu.FadeIn("TransicaoObj","FadeInOut",0.5f,0));
     }
 
     public void Créditos() //créditos SFX
