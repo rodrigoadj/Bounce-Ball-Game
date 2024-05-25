@@ -5,25 +5,24 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 using Unity.Mathematics;
+using System.Runtime.CompilerServices;
 
 public class MenuScript : MonoBehaviour
 {
-    [SerializeField]private GameObject[] imgOBJ, prefab_AreaEstrelas;
-    [SerializeField]private TMP_Text txt_InfoBuild, txt_popUp;
+    [SerializeField] private GameObject[] imgOBJ, prefab_AreaEstrelas, estrelas;
+    [SerializeField] private TMP_Text txt_InfoBuild, txt_popUp;
     public GameObject painel_Fases;
     private int fasesConcluidas, chave;
     [SerializeField] private Button[] btn_Fases;
     [SerializeField] Button removeDados;
-    [SerializeField]private AnimacaoMenu animMenu;
+    [SerializeField] private AnimacaoMenu animMenu;
 
-    public GameObject[] filhos = new GameObject[3];
-    public GameObject[] filhoFilho = new GameObject[3];
+    public GameObject[] filhos;
 
-    
-  
+
     void Start()
     {
-        GeraBarreira(); 
+        GeraBarreira();
         StartCoroutine(animMenu.InstanciaObjeto(15));
         removeDados.onClick.AddListener(() => StartCoroutine(RemoveDados()));
         painel_Fases.SetActive(false);
@@ -31,72 +30,78 @@ public class MenuScript : MonoBehaviour
         ArmazenaFases();
         ArmazenaInformacoes();
         LiberaFases();
+        //MostraEstrela();
     }
 
     void Update()
     {
-        if(animMenu.boolTemporizada)
+        if (animMenu.boolTemporizada)
             painel_Fases.SetActive(true);
+
+        print(FaseID.countTentativas);
 
     }
 
     void ArmazenaFases()
     {
-        btn_Fases = new Button[painel_Fases.transform.childCount];
-        for(int _index=0; _index < painel_Fases.transform.childCount; _index++)
+        btn_Fases = new Button[painel_Fases.transform.childCount - 1];
+        estrelas = new GameObject[btn_Fases.Length];
+        filhos = new GameObject[estrelas.Length];
+        for (int _index = 0; _index < painel_Fases.transform.childCount - 1; _index++)
         {
             btn_Fases[_index] = painel_Fases.transform.GetChild(_index).GetComponent<Button>();
-
-            if(_index > 0)
-            {
-                if(btn_Fases[_index].gameObject.name == "BTN_Voltar")
-                    return;
-                else
-                    btn_Fases[_index].interactable = false;
-            }  
+            estrelas[_index] = prefab_AreaEstrelas[_index].transform.GetChild(0).gameObject;
+            filhos[_index] = estrelas[_index].transform.GetChild(0).gameObject;
+            btn_Fases[_index].interactable = false;
         }
+        btn_Fases[0].interactable = true;
     }
-    
+
     void ArmazenaInformacoes()
     {
         PlayerPrefs.SetInt("liberar", FaseID.idFaseConcluida);
         fasesConcluidas = PlayerPrefs.GetInt("liberar");
+        FaseID.countTentativas = PlayerPrefs.GetInt("Tentativas");
     }
 
-    void LiberaFases() //TIRE AS ESTRELAS DEIXE APENAS COM 1 PARA O TIRO UNICO
+    void LiberaFases()
     {
-        for(int i=0; i <= fasesConcluidas; i++)
+        for (int i = 0; i <= fasesConcluidas; i++)
         {
-            for(int j=0; j<3; j++)
-            {
-                filhos[j] = prefab_AreaEstrelas[i].transform.GetChild(j).gameObject;
-                print(filhos[j]);
-                
-                filhoFilho[j] = filhos[j].transform.GetChild(j).gameObject;
-                print(filhoFilho[j].name);
-                filhoFilho[FaseID.countTentativas].SetActive(true);
-            }
+            btn_Fases[i].interactable = true;
+        }
+    }
 
-            btn_Fases[i].interactable = true; 
-            print("FaseConcluidas " + fasesConcluidas);
+    void MostraEstrela()
+    {
+        for (int i = 0; i < fasesConcluidas; i++)
+        {
+            if (FaseID.countTentativas == 1)
+            {
+                filhos[fasesConcluidas].SetActive(true);
+            }
+            else
+            {
+                filhos[fasesConcluidas].SetActive(false);
+            }
         }
     }
 
     void GeraBarreira()
     {
-        imgOBJ[0].transform.localScale = new Vector2(transform.localScale.x,animMenu.alturaTotal);
-        imgOBJ[0].transform.position = new Vector2(-animMenu.larguraDividida,0);
-        imgOBJ[1].transform.localScale = new Vector2(transform.localScale.x,animMenu.alturaTotal);
-        imgOBJ[1].transform.position = new Vector2(animMenu.larguraDividida,0);
-        imgOBJ[2].transform.localScale = new Vector2(animMenu.larguraTotal,transform.localScale.y);
-        imgOBJ[2].transform.position = new Vector2(0,-animMenu.alturaDividida);
-        imgOBJ[3].transform.localScale = new Vector2(animMenu.larguraTotal,transform.localScale.y);
-        imgOBJ[3].transform.position = new Vector2(0,animMenu.alturaDividida);
+        imgOBJ[0].transform.localScale = new Vector2(transform.localScale.x, animMenu.alturaTotal);
+        imgOBJ[0].transform.position = new Vector2(-animMenu.larguraDividida, 0);
+        imgOBJ[1].transform.localScale = new Vector2(transform.localScale.x, animMenu.alturaTotal);
+        imgOBJ[1].transform.position = new Vector2(animMenu.larguraDividida, 0);
+        imgOBJ[2].transform.localScale = new Vector2(animMenu.larguraTotal, transform.localScale.y);
+        imgOBJ[2].transform.position = new Vector2(0, -animMenu.alturaDividida);
+        imgOBJ[3].transform.localScale = new Vector2(animMenu.larguraTotal, transform.localScale.y);
+        imgOBJ[3].transform.position = new Vector2(0, animMenu.alturaDividida);
     }
 
     public void ComecaJogo()
     {
-        StartCoroutine(animMenu.FadeIn("TransicaoObj","FadeInOut",0.5f,0));
+        StartCoroutine(animMenu.FadeIn("TransicaoObj", "FadeInOut", 0.5f, 0));
     }
 
     public void Créditos() //créditos SFX
@@ -115,9 +120,9 @@ public class MenuScript : MonoBehaviour
         https://pixabay.com/pt/sound-effects/short-echo-fart-185251/
         https://pixabay.com/pt/sound-effects/paft-drunk-drums-efx-1574-206584/
         */
-        
+
     }
-    
+
     public void InformacaoJogo()
     {
         txt_InfoBuild.text = Application.companyName + ", " + "Versão " + Application.version;
@@ -128,7 +133,7 @@ public class MenuScript : MonoBehaviour
     {
         Application.Quit();
     }
-    public void IndexFaseButton(int ID=0)
+    public void IndexFaseButton(int ID = 0)
     {
         FaseID.faseID = ID;
         SceneManager.LoadScene("Game");
@@ -138,25 +143,27 @@ public class MenuScript : MonoBehaviour
     {
         chave++;
         print(chave);
-        switch(chave)
+        switch (chave)
         {
             case 1:
                 txt_popUp.text = "Você deseja mesmo apagar tudo?";
-            break;
+                break;
 
             case 2:
                 txt_popUp.text = "Ultima chance para voltar atrás. Você tem certeza?";
-            break;
+                break;
 
             case 3:
                 txt_popUp.text = "Registros apagados com sucesso";
                 PlayerPrefs.DeleteAll();
                 fasesConcluidas = 0;
                 chave = 0;
+                MostraEstrela();
+                ArmazenaFases();
                 SoundManager.intanceSound.PlayResetDados();
                 yield return new WaitForSeconds(1);
                 txt_popUp.text = "";
-            break;
+                break;
         }
     }
 

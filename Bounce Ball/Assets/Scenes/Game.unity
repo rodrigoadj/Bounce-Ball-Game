@@ -1442,11 +1442,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &573956612 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5228895080612591280, guid: 72b5331ab16cf184e88631c525a3d124, type: 3}
-  m_PrefabInstance: {fileID: 5228895080039224500}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &670899525
 GameObject:
   m_ObjectHideFlags: 0
@@ -15746,11 +15741,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1 &1132360548 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5228895081137235920, guid: 72b5331ab16cf184e88631c525a3d124, type: 3}
-  m_PrefabInstance: {fileID: 5228895080039224500}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1143640486
 GameObject:
   m_ObjectHideFlags: 0
@@ -17521,10 +17511,7 @@ MonoBehaviour:
   - {x: 0, y: 0}
   - {x: 0, y: 0}
   - {x: 0, y: 0}
-  estrelas:
-  - {fileID: 1132360548}
-  - {fileID: 573956612}
-  - {fileID: 2039070640}
+  estrela: {fileID: 2039070640}
 --- !u!4 &1866012079
 Transform:
   m_ObjectHideFlags: 0
@@ -18357,9 +18344,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2133925301}
     m_Modifications:
+    - target: {fileID: 5228895080293961289, guid: 72b5331ab16cf184e88631c525a3d124, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228895080293961289, guid: 72b5331ab16cf184e88631c525a3d124, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228895080293961289, guid: 72b5331ab16cf184e88631c525a3d124, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228895080293961289, guid: 72b5331ab16cf184e88631c525a3d124, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228895080293961289, guid: 72b5331ab16cf184e88631c525a3d124, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 353
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228895080293961289, guid: 72b5331ab16cf184e88631c525a3d124, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -49.924988
+      objectReference: {fileID: 0}
     - target: {fileID: 5228895080319953713, guid: 72b5331ab16cf184e88631c525a3d124, type: 3}
       propertyPath: m_Name
       value: Area Estrela
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228895080319953713, guid: 72b5331ab16cf184e88631c525a3d124, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5228895080319953714, guid: 72b5331ab16cf184e88631c525a3d124, type: 3}
       propertyPath: m_Pivot.x
@@ -18443,6 +18458,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5228895080319953714, guid: 72b5331ab16cf184e88631c525a3d124, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5228895081491016452, guid: 72b5331ab16cf184e88631c525a3d124, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
