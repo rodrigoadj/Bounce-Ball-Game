@@ -44,3 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b989c5d944fa204ba958e1df2f42564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  faseID: 0
+  idFaseConcluida: 0
+  countTentativas: 0
+  bitEstrelas: 00000000000000000000000000000000000000000000000000000000000000000000000000000000

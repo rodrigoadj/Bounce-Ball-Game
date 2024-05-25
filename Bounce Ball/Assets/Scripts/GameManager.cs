@@ -73,6 +73,8 @@ public class GameManager : MonoBehaviour
         painelVitoria.SetActive(false);
         contadorQuicada = 0;
         contadorTentativa = 0;
+        FaseID.bitEstrelas[faseAtual] = 0;
+
     }
 
     void LiberarDisparo()
@@ -106,6 +108,16 @@ public class GameManager : MonoBehaviour
         comecarJogo = true;
     }
 
+    void DefiniEstrelas()
+    {
+        if (contadorRecord[faseAtual].y == 1)
+            FaseID.bitEstrelas[faseAtual] = 1;
+
+        else
+            FaseID.bitEstrelas[faseAtual] = 0;
+        print("Estrelas ganhas: " + FaseID.bitEstrelas[faseAtual]);
+    }
+
     public void AbrirPainelVitoria()
     {
         if (venceu)
@@ -128,16 +140,15 @@ public class GameManager : MonoBehaviour
     {
         if (venceu)
         {
-            cannon.bala = null;
+            DefiniEstrelas();
             faseAtual++;
             if (faseAtual > FaseID.idFaseConcluida)
+            {
                 FaseID.idFaseConcluida = faseAtual;
-            PlayerPrefs.SetInt("Tentativas", contadorTentativa);
+            }
+            cannon.bala = null;
             AtualizaInformacao();
             estrela.SetActive(false);
-
-
-
             venceu = false;
         }
     }

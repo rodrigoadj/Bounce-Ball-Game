@@ -30,7 +30,7 @@ public class MenuScript : MonoBehaviour
         ArmazenaFases();
         ArmazenaInformacoes();
         LiberaFases();
-        //MostraEstrela();
+        MostraEstrela();
     }
 
     void Update()
@@ -38,7 +38,7 @@ public class MenuScript : MonoBehaviour
         if (animMenu.boolTemporizada)
             painel_Fases.SetActive(true);
 
-        print(FaseID.countTentativas);
+        //print(FaseID.countTentativas);
 
     }
 
@@ -61,7 +61,7 @@ public class MenuScript : MonoBehaviour
     {
         PlayerPrefs.SetInt("liberar", FaseID.idFaseConcluida);
         fasesConcluidas = PlayerPrefs.GetInt("liberar");
-        FaseID.countTentativas = PlayerPrefs.GetInt("Tentativas");
+        //FaseID.countTentativas = PlayerPrefs.GetInt("Tentativas");
     }
 
     void LiberaFases()
@@ -74,16 +74,13 @@ public class MenuScript : MonoBehaviour
 
     void MostraEstrela()
     {
-        for (int i = 0; i < fasesConcluidas; i++)
+        for (int i = 0; i < FaseID.bitEstrelas.Length; i++)
         {
-            if (FaseID.countTentativas == 1)
-            {
-                filhos[fasesConcluidas].SetActive(true);
-            }
+            print("Estrela Ganha Menu: " + FaseID.bitEstrelas[i]);
+            if (FaseID.bitEstrelas[i] == 1)
+                filhos[i].SetActive(true);
             else
-            {
-                filhos[fasesConcluidas].SetActive(false);
-            }
+                filhos[i].SetActive(false);
         }
     }
 

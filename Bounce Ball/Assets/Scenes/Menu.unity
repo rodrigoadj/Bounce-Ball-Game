@@ -849,6 +849,7 @@ MonoBehaviour:
   btn_Fases: []
   removeDados: {fileID: 1387215558}
   animMenu: {fileID: 339303546}
+  filhos: []
 --- !u!4 &314556316
 Transform:
   m_ObjectHideFlags: 0
@@ -2891,14 +2892,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 989318370, guid: 7c532e32d7d0c0d46906dd07d65abe70, type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4690167969029751365, guid: 7c532e32d7d0c0d46906dd07d65abe70, type: 3}
-      propertyPath: m_Volume
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4690167969029751370, guid: 7c532e32d7d0c0d46906dd07d65abe70, type: 3}
       propertyPath: m_Name
       value: SoundManager
