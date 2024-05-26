@@ -20,6 +20,8 @@ public class GameManager : MonoBehaviour
     private Button btn_MovCam;
     private Cannon cannon;
 
+    public int FASETESTE;
+
 
 
 
@@ -33,7 +35,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        faseAtual = FaseID.faseID;
+        //faseAtual = FaseID.faseID;
+        faseAtual = FASETESTE;
         painelVitoria.SetActive(false);
         comecarJogo = true;
         AtualizaInformacao();
@@ -174,6 +177,7 @@ public class GameManager : MonoBehaviour
     public void BTN_PausarJogo()
     {
         comecarJogo = false;
+        btn_MovCam.interactable = false;
         painelPause.SetActive(true);
         Time.timeScale = 0;
     }
@@ -181,6 +185,7 @@ public class GameManager : MonoBehaviour
     public void BTN_Continue()
     {
         Time.timeScale = 1;
+        btn_MovCam.interactable = true;
         Invoke(nameof(DelayJogo), 0.2f);
         painelPause.SetActive(false);
     }
@@ -195,6 +200,7 @@ public class GameManager : MonoBehaviour
     public void BTN_ReiniciarJogo()
     {
         Time.timeScale = 1;
+        btn_MovCam.interactable = false;
         Invoke(nameof(DelayJogo), 0.2f);
         Destroy(cannon.bala);
         AtualizaInformacao();
