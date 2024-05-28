@@ -10,10 +10,10 @@ using System.Runtime.CompilerServices;
 public class MenuScript : MonoBehaviour
 {
     [SerializeField] private GameObject[] imgOBJ, prefab_AreaEstrelas, estrelas;
+    [SerializeField] private Button[] btn_Fases;
     [SerializeField] private TMP_Text txt_InfoBuild, txt_popUp;
     public GameObject painel_Fases;
     private int fasesConcluidas, chave;
-    [SerializeField] private Button[] btn_Fases;
     [SerializeField] Button removeDados;
     [SerializeField] private AnimacaoMenu animMenu;
 
@@ -37,9 +37,6 @@ public class MenuScript : MonoBehaviour
     {
         if (animMenu.boolTemporizada)
             painel_Fases.SetActive(true);
-
-        //print(FaseID.countTentativas);
-
     }
 
     void ArmazenaFases()
@@ -61,7 +58,6 @@ public class MenuScript : MonoBehaviour
     {
         PlayerPrefs.SetInt("liberar", FaseID.idFaseConcluida);
         fasesConcluidas = PlayerPrefs.GetInt("liberar");
-        //FaseID.countTentativas = PlayerPrefs.GetInt("Tentativas");
     }
 
     void LiberaFases()
@@ -98,7 +94,7 @@ public class MenuScript : MonoBehaviour
 
     public void ComecaJogo()
     {
-        StartCoroutine(animMenu.FadeIn("TransicaoObj", "FadeInOut", 0.5f, 0));
+        StartCoroutine(animMenu.FadeIn("TransicaoAnimacao", "FadeInOut", 0.5f, 0));
     }
 
     public void Créditos() //créditos SFX

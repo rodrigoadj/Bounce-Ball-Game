@@ -20,9 +20,6 @@ public class GameManager : MonoBehaviour
     private Button btn_MovCam;
     private Cannon cannon;
 
-    public int FASETESTE;
-
-
 
 
 
@@ -35,8 +32,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //faseAtual = FaseID.faseID;
-        faseAtual = FASETESTE;
+        faseAtual = FaseID.faseID;
         painelVitoria.SetActive(false);
         comecarJogo = true;
         AtualizaInformacao();
