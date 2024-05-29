@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public bool comecarJogo;
     public bool movCamera, podeAtirar;
     public int faseAtual, quantidadeFase, contadorTentativa;
-    [SerializeField] private GameObject painelBotoesCam, painelVitoria, painelPause;
+    [SerializeField] public GameObject painelBotoesCam, painelVitoria, painelPause;
     [SerializeField] private Transform posCamera, posCanhao, posChegada;
     [SerializeField] private Transform[] transformCamera, transformCanhao, transformChegada;
     [SerializeField] private Vector2[] contadorRecord;
@@ -123,6 +123,7 @@ public class GameManager : MonoBehaviour
     {
         if (venceu)
         {
+            print("Venceu" + "Fase Atual" + faseAtual + "GameManager");
             MostrarEstrelas();
             btn_MovCam.interactable = false;
             painelVitoria.SetActive(true);

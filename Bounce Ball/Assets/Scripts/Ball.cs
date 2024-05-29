@@ -15,13 +15,17 @@ public class Ball : MonoBehaviour
     {
         GameManager.contadorQuicada++;
         somColisao = GetComponent<AudioSource>();
+        Collider2D ballcoll = GetComponent<CircleCollider2D>();
         somColisao.Play();
 
         if (coll.gameObject.CompareTag("Chegada"))
         {
             GameManager.venceu = true;
             SoundManager.intanceSound.PlayVitoria();
-            Invoke(nameof(Delay), 3);
+            ballcoll.enabled = false;
+            gameManager.AbrirPainelVitoria();
+            Destroy(gameObject, 0.3f);
+            //Invoke(nameof(Delay), 3);
 
         }
     }
@@ -29,6 +33,7 @@ public class Ball : MonoBehaviour
 
     void Delay()
     {
+        print("Venceu" + "Fase Atual" + gameManager.faseAtual + "Bola");
         gameManager.AbrirPainelVitoria();
         Destroy(gameObject);
     }
