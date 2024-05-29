@@ -20,8 +20,16 @@ public class Ball : MonoBehaviour
         if (coll.gameObject.CompareTag("Chegada"))
         {
             GameManager.venceu = true;
-            gameManager.AbrirPainelVitoria();
-            Destroy(gameObject, 0.3f);
+            SoundManager.intanceSound.PlayVitoria();
+            Invoke(nameof(Delay), 3);
+
         }
+    }
+
+
+    void Delay()
+    {
+        gameManager.AbrirPainelVitoria();
+        Destroy(gameObject);
     }
 }

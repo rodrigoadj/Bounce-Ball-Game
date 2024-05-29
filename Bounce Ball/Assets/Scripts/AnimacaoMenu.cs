@@ -53,27 +53,6 @@ public class AnimacaoMenu : MonoBehaviour
         }
     }
 
-    public IEnumerator MudarCor(string _nomeTile, float _escalaTempo)
-    {
-        Tilemap seuTile = GameObject.Find(_nomeTile).GetComponent<Tilemap>();
-        int time = 0;
-
-        while (seuTile.color.r > time)//|| g > time || b > time)
-        {
-            time--;
-            print(time);
-            seuTile.color = new Vector4(seuTile.color.a, time, seuTile.color.g, seuTile.color.b);
-            yield return new WaitForSeconds(_escalaTempo);
-        }
-
-        // while (r < time || g < time || b < time)
-        // {
-        //     time--;
-        //     seuTile.color = new Vector4(seuTile.color.a, r, g, b);
-        //     yield return new WaitForSeconds(_escalaTempo);
-        // }
-    }
-
     public IEnumerator InstanciaObjeto(int _quant)
     {
         yield return new WaitForSeconds(2);

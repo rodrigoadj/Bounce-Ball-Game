@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject estrela;
     private Button btn_MovCam;
     private Cannon cannon;
+    public TMP_Text txt_Tentativas;
 
 
 
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
     void MostrarInformacao() // Implementar A UI
     {
         contadorRecord[faseAtual] = new Vector2(contadorQuicada, contadorTentativa);
+        txt_Tentativas.text = contadorTentativa.ToString();
     }
 
     void AtualizaInformacao()

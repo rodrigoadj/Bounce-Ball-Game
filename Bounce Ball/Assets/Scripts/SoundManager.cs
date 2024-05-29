@@ -12,19 +12,19 @@ public class SoundManager : MonoBehaviour
     public AudioClip[] SFX_PlayListMenu;
     public AudioClip[] SFX_PlayListGame;
 
-    private void Awake() 
+    private void Awake()
     {
         intanceSound = GetComponent<SoundManager>();
         audioReprodutorSource[0] = GetComponent<AudioSource>();
     }
-    
+
     void Start()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 0)
-            Invoke(nameof(PlayListMenu),1f);
-        
-        if(SceneManager.GetActiveScene().buildIndex == 1)
-            Invoke(nameof(PlayListGame),1f);
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            Invoke(nameof(PlayListMenu), 1f);
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+            Invoke(nameof(PlayListGame), 1f);
     }
 
     public void PlaySfxBotaoVoltar()
@@ -41,38 +41,35 @@ public class SoundManager : MonoBehaviour
 
     public void PlayListMenu()
     {
-        if(audioReprodutorSource[1].isPlaying)
+
+        if (!audioReprodutorSource[1].isPlaying)
         {
-            
-        }
-        else if(!audioReprodutorSource[1].isPlaying)
-        {
-            audioReprodutorSource[1].clip = SFX_PlayListMenu[Random.Range(0,SFX_PlayListMenu.Length)];
+            audioReprodutorSource[1].clip = SFX_PlayListMenu[Random.Range(0, SFX_PlayListMenu.Length)];
             audioReprodutorSource[1].Play();
         }
-        //print("não parou Menu");
-        Invoke(nameof(PlayListMenu),1f);
+        Invoke(nameof(PlayListMenu), 1f);
     }
 
     public void PlayListGame()
     {
-        if(audioReprodutorSource[1].isPlaying)
+        if (!audioReprodutorSource[1].isPlaying)
         {
-
-        }
-        else
-        {
-            audioReprodutorSource[1].clip = SFX_PlayListGame[Random.Range(0,SFX_PlayListGame.Length)];
+            audioReprodutorSource[1].clip = SFX_PlayListGame[Random.Range(0, SFX_PlayListGame.Length)];
             audioReprodutorSource[1].Play();
         }
-        //print("não parou Game");
-        Invoke(nameof(PlayListGame),1f);
+        Invoke(nameof(PlayListGame), 1f);
     }
 
     public void PlayResetDados()
     {
         audioReprodutorSource[0].clip = SFX_Outros[0];
         audioReprodutorSource[0].Play();
+    }
+
+    public void PlayVitoria()
+    {
+        audioReprodutorSource[1].clip = SFX_Outros[1];
+        audioReprodutorSource[1].Play();
     }
 
 }
