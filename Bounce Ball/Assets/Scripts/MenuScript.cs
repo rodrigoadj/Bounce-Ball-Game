@@ -1,11 +1,8 @@
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
-using Unity.Mathematics;
-using System.Runtime.CompilerServices;
 
 public class MenuScript : MonoBehaviour
 {
@@ -18,6 +15,8 @@ public class MenuScript : MonoBehaviour
     [SerializeField] private AnimacaoMenu animMenu;
 
     public GameObject[] filhos;
+
+
 
 
     void Start()
