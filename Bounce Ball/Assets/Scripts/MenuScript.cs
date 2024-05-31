@@ -55,7 +55,6 @@ public class MenuScript : MonoBehaviour
 
     void ArmazenaInformacoes()
     {
-        PlayerPrefs.SetInt("liberar", FaseID.idFaseConcluida);
         fasesConcluidas = PlayerPrefs.GetInt("liberar");
     }
 
@@ -150,6 +149,10 @@ public class MenuScript : MonoBehaviour
                 PlayerPrefs.DeleteAll();
                 fasesConcluidas = 0;
                 chave = 0;
+                for (int i = 0; i < FaseID.bitEstrelas.Length; i++)
+                {
+                    FaseID.bitEstrelas[i] = 0;
+                }
                 MostraEstrela();
                 ArmazenaFases();
                 SoundManager.intanceSound.PlayResetDados();

@@ -21,20 +21,12 @@ public class Ball : MonoBehaviour
         if (coll.gameObject.CompareTag("Chegada"))
         {
             GameManager.venceu = true;
+            PlayerPrefs.SetInt("liberar", FaseID.idFaseConcluida);
             SoundManager.intanceSound.PlayVitoria();
             ballcoll.enabled = false;
             gameManager.AbrirPainelVitoria();
             Destroy(gameObject, 0.3f);
-            //Invoke(nameof(Delay), 3);
 
         }
-    }
-
-
-    void Delay()
-    {
-        print("Venceu" + "Fase Atual" + gameManager.faseAtual + "Bola");
-        gameManager.AbrirPainelVitoria();
-        Destroy(gameObject);
     }
 }

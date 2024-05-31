@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class AnimacaoMenu : MonoBehaviour
 {
-    [SerializeField] private GameObject[] imgOBJ;
     [SerializeField] private GameObject[] objMoveis;
     [SerializeField] private GameObject prefabObject, prefabObjAnimado;
     public float larguraTotal; // Largura da grade
     public int larguraDividida; //largura dividida da grade
     public float alturaTotal, alturaDividida; // Altura da grade e altura dividida
     private int multiplicador = 5, objetosEmCena;
-    private bool podeInstanciar;
     public bool boolTemporizada;
 
     void Awake()
@@ -21,19 +19,6 @@ public class AnimacaoMenu : MonoBehaviour
         larguraTotal = alturaTotal * Camera.main.aspect;
         larguraDividida = (int)(larguraTotal / 2) + 1;
     }
-
-    void Start()
-    {
-
-    }
-
-
-    void Update()
-    {
-
-    }
-
-
 
     void MoveObj()
     {

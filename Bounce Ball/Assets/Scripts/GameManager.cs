@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
     public bool comecarJogo;
     public bool movCamera, podeAtirar;
     public int faseAtual, quantidadeFase, contadorTentativa;
-    [SerializeField] public GameObject painelBotoesCam, painelVitoria, painelPause;
+    [SerializeField] public GameObject painelBotoesCam, painelProximaFase, painelPause, painelVitoria;
     [SerializeField] private Transform posCamera, posCanhao, posChegada;
     [SerializeField] private Transform[] transformCamera, transformCanhao, transformChegada;
     [SerializeField] private Vector2[] contadorRecord;
@@ -20,20 +20,22 @@ public class GameManager : MonoBehaviour
     private Cannon cannon;
     public TMP_Text txt_Tentativas;
 
-
+    public int TESTEFASE;
 
 
     void Awake()
     {
         btn_MovCam = GameObject.Find("BTN_MoveCamera").GetComponent<Button>();
-        cannon = GameObject.Find("Canhão").GetComponent<Cannon>();
+        cannon = GameObject.Find("Canhao").GetComponent<Cannon>();
         posCamera = GameObject.Find("Camera").transform;
     }
 
     void Start()
     {
-        faseAtual = FaseID.faseID;
+        //faseAtual = FaseID.faseID;
+        faseAtual = TESTEFASE;
         painelVitoria.SetActive(false);
+        painelProximaFase.SetActive(false);
         comecarJogo = true;
         AtualizaInformacao();
         podeAtirar = true;
@@ -46,7 +48,6 @@ public class GameManager : MonoBehaviour
             MostrarInformacao();
             SeguirBola();
             LiberarDisparo();
-            //AbrirPainelVitoria();
         }
     }
 
@@ -67,14 +68,16 @@ public class GameManager : MonoBehaviour
 
     void AtualizaInformacao()
     {
-        posCamera.position = transformCamera[faseAtual].position;
-        posCanhao.position = transformCanhao[faseAtual].position;
-        posChegada.position = transformChegada[faseAtual].position;
-        painelVitoria.SetActive(false);
-        contadorQuicada = 0;
-        contadorTentativa = 0;
-        FaseID.bitEstrelas[faseAtual] = 0;
-
+        if (faseAtual != 10)
+        {
+            posCamera.position = transformCamera[faseAtual].position;
+            posCanhao.position = transformCanhao[faseAtual].position;
+            posChegada.position = transformChegada[faseAtual].position;
+            painelProximaFase.SetActive(false);
+            contadorQuicada = 0;
+            contadorTentativa = 0;
+            FaseID.bitEstrelas[faseAtual] = 0;
+        }
     }
 
     void LiberarDisparo()
@@ -118,6 +121,15 @@ public class GameManager : MonoBehaviour
         print("Estrelas ganhas: " + FaseID.bitEstrelas[faseAtual]);
     }
 
+    void GanhouJogo()
+    {
+        if (faseAtual == 10)
+        {
+            painelVitoria.SetActive(true);
+            comecarJogo = false;            //TRAVA TUDO, SERVE APENAR PARA FINALIZAR O GAME <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+        }
+    }
+
     public void AbrirPainelVitoria()
     {
         if (venceu)
@@ -125,7 +137,7 @@ public class GameManager : MonoBehaviour
             print("Venceu" + "Fase Atual" + faseAtual + "GameManager");
             MostrarEstrelas();
             btn_MovCam.interactable = false;
-            painelVitoria.SetActive(true);
+            painelProximaFase.SetActive(true);
         }
     }
 
@@ -133,7 +145,7 @@ public class GameManager : MonoBehaviour
     {
         venceu = false;
         AtualizaInformacao();
-        painelVitoria.SetActive(false);
+        painelProximaFase.SetActive(false);
         estrela.SetActive(false);
     }
 
@@ -145,8 +157,10 @@ public class GameManager : MonoBehaviour
             faseAtual++;
             if (faseAtual > FaseID.idFaseConcluida)
             {
-                FaseID.idFaseConcluida = faseAtual;
+                if (faseAtual != 10)
+                    FaseID.idFaseConcluida = faseAtual;
             }
+            GanhouJogo();
             cannon.bala = null;
             AtualizaInformacao();
             estrela.SetActive(false);
@@ -191,6 +205,7 @@ public class GameManager : MonoBehaviour
     public void BTN_VoltarMenu()
     {
         Time.timeScale = 1;
+        venceu = false;
         painelPause.SetActive(false);
         SceneManager.LoadScene("Menu");
     }
