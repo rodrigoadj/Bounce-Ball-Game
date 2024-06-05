@@ -90,6 +90,14 @@ public class GameManager : MonoBehaviour
                 posCamera.position = transformCamera[faseAtual].position;
                 StartCoroutine(TempoDeResposta());
             }
+
+            if (cannon.bala != null && !movCamera && cannon.recarregar == 2)
+            {
+                btn_MovCam.interactable = true;
+                posCamera.position = transformCamera[faseAtual].position;
+                Destroy(cannon.bala);
+                StartCoroutine(TempoDeResposta());
+            }
         }
     }
 
@@ -119,6 +127,7 @@ public class GameManager : MonoBehaviour
         else
             FaseID.bitEstrelas[faseAtual] = 0;
         print("Estrelas ganhas: " + FaseID.bitEstrelas[faseAtual]);
+        PlayerPrefs.SetInt("estrela", FaseID.bitEstrelas[faseAtual]);
     }
 
     void GanhouJogo()
@@ -134,6 +143,7 @@ public class GameManager : MonoBehaviour
     {
         if (venceu)
         {
+
             print("Venceu" + "Fase Atual" + faseAtual + "GameManager");
             MostrarEstrelas();
             btn_MovCam.interactable = false;

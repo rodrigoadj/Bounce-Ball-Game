@@ -6,7 +6,8 @@ public class Cannon : MonoBehaviour
     public GameObject prefab_Bala, cano, bala;
     public GameObject barraPotencia;
     private Vector2 tamanhoInicialBarra = new Vector2(0, 0.1f);
-
+    public int recarregar;
+    float time;
     GameManager gameManager;
     void Start()
     {
@@ -22,6 +23,13 @@ public class Cannon : MonoBehaviour
                 Touch toque = Input.GetTouch(0);
                 Vector2 posToque = Camera.main.ScreenToWorldPoint(toque.position);
                 Vector2 direcao = new Vector2(posToque.x - transform.position.x, posToque.y - transform.position.y);
+
+                if (toque.phase == TouchPhase.Began)
+                {
+                    recarregar++;
+                    if (recarregar > 2)
+                        recarregar = 0;
+                }
 
                 if (!gameManager.movCamera)
                     transform.right = direcao;
@@ -40,6 +48,8 @@ public class Cannon : MonoBehaviour
                     }
                 }
             }
+
+        DelayToque();
     }
 
     void Potenciometro(Vector2 _direcao)
@@ -48,5 +58,18 @@ public class Cannon : MonoBehaviour
             barraPotencia.transform.localScale = new Vector2(0, 0.1f);
         else if (_direcao.x > 0)
             barraPotencia.transform.localScale = new Vector2(_direcao.x * 0.1f, 0.1f);
+    }
+
+    void DelayToque()
+    {
+        if (recarregar > 0)
+        {
+            time += Time.deltaTime * 1;
+            if (time > 0.5f)
+            {
+                recarregar = 0;
+                time = 0;
+            }
+        }
     }
 }
