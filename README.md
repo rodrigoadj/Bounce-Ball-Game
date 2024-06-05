@@ -48,21 +48,19 @@ A ideia aqui é desenvolver um jogo completo, mobile, que eu possa manipular os 
 - [x]  Menu de Fases
 - [x]  Contador de Quicadas da Bola
 - [x]  Contador de tentativas
-- [ ]  Indicador de Estrelas por fase
-- [ ]  Mudança de cores do cenário
-- [ ]  Brilho onde a Bola Bateu
+- [x]  Indicador de Estrelas por fase
+- [x]  Mudança de cores do cenário
 - [ ]  Animação ao Disparar
-- [ ]  Animação da bola Colidindo (Opcional)
 - [x]  Animação de Menus
-- [ ]  Animação de Vitória (Opcional)
+- [x]  Animação de Vitória (Opcional)
 - [x]  Transição de Cenas
 - [x]  Transição de Fases
-- [ ]  Efeitos sonoros
+- [x]  Efeitos sonoros
 - [x]  Música do jogo
 - [x]  Efeitos sonoros do menu e HUD
 - [ ]  Tradução (Para o Final)(Opcional)
-- [ ]  Visual do Menu
-- [ ]  Visual da HUD
-- [ ]  Visual do Menu de Fases
+- [x]  Visual do Menu
+- [x]  Visual da HUD
+- [x]  Visual do Menu de Fases
 - [x]  Design de Níveis
 
