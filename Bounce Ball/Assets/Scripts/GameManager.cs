@@ -20,8 +20,6 @@ public class GameManager : MonoBehaviour
     private Cannon cannon;
     public TMP_Text txt_Tentativas;
 
-    public int TESTEFASE;
-
 
     void Awake()
     {
@@ -32,8 +30,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        //faseAtual = FaseID.faseID;
-        faseAtual = TESTEFASE;
+        faseAtual = FaseID.faseID;
         painelVitoria.SetActive(false);
         painelProximaFase.SetActive(false);
         comecarJogo = true;
@@ -57,6 +54,8 @@ public class GameManager : MonoBehaviour
         {
             if (contadorTentativa == 1)
                 estrela.SetActive(true);
+            else
+                estrela.SetActive(false);
         }
     }
 
@@ -119,15 +118,12 @@ public class GameManager : MonoBehaviour
         comecarJogo = true;
     }
 
-    void DefiniEstrelas()
+    void SalvaEstrelas()
     {
         if (contadorRecord[faseAtual].y == 1)
-            FaseID.bitEstrelas[faseAtual] = 1;
-
+            FaseID.instance.SalvarEstrelas(faseAtual, 1);
         else
-            FaseID.bitEstrelas[faseAtual] = 0;
-        print("Estrelas ganhas: " + FaseID.bitEstrelas[faseAtual]);
-        PlayerPrefs.SetInt("estrela", FaseID.bitEstrelas[faseAtual]);
+            FaseID.instance.SalvarEstrelas(faseAtual, 0);
     }
 
     void GanhouJogo()
@@ -139,13 +135,24 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    [ContextMenu("Hack")]
+    void PassouFase()
+    {
+        Debug.Log("Entrou");
+        if (faseAtual >= PlayerPrefs.GetInt("liberar", -1))
+        {
+            Debug.Log("Salvou");
+            PlayerPrefs.SetInt("liberar", faseAtual);
+        }
+    }
+
     public void AbrirPainelVitoria()
     {
         if (venceu)
         {
-
-            print("Venceu" + "Fase Atual" + faseAtual + "GameManager");
+            Debug.Log("Venceu" + "Fase Atual" + faseAtual + "GameManager");
             MostrarEstrelas();
+            PassouFase();
             btn_MovCam.interactable = false;
             painelProximaFase.SetActive(true);
         }
@@ -163,13 +170,8 @@ public class GameManager : MonoBehaviour
     {
         if (venceu)
         {
-            DefiniEstrelas();
+            SalvaEstrelas();
             faseAtual++;
-            if (faseAtual > FaseID.idFaseConcluida)
-            {
-                if (faseAtual != 10)
-                    FaseID.idFaseConcluida = faseAtual;
-            }
             GanhouJogo();
             cannon.bala = null;
             AtualizaInformacao();

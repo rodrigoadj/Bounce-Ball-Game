@@ -13,11 +13,7 @@ public class MenuScript : MonoBehaviour
     private int fasesConcluidas, chave, estrelaGanha;
     [SerializeField] Button removeDados;
     [SerializeField] private AnimacaoMenu animMenu;
-
     public GameObject[] filhos;
-
-
-
 
     void Start()
     {
@@ -29,6 +25,7 @@ public class MenuScript : MonoBehaviour
         ArmazenaFases();
         ArmazenaInformacoes();
         LiberaFases();
+        FaseID.instance.CarregarEstrelas();
         MostraEstrela();
     }
 
@@ -56,14 +53,14 @@ public class MenuScript : MonoBehaviour
     void ArmazenaInformacoes()
     {
         fasesConcluidas = PlayerPrefs.GetInt("liberar");
-        estrelaGanha = PlayerPrefs.GetInt("estrela");
     }
 
     void LiberaFases()
     {
-        for (int i = 0; i <= fasesConcluidas; i++)
+        for (int i = 0; i <= fasesConcluidas + 1; i++)
         {
-            btn_Fases[i].interactable = true;
+            if (i < btn_Fases.Length)
+                btn_Fases[i].interactable = true;
         }
     }
 
@@ -71,7 +68,6 @@ public class MenuScript : MonoBehaviour
     {
         for (int i = 0; i < FaseID.bitEstrelas.Length; i++)
         {
-            print("Estrela Ganha Menu: " + FaseID.bitEstrelas[i] + "Est" + estrelaGanha);
             if (FaseID.bitEstrelas[i] == 1)
                 filhos[i].SetActive(true);
             else

@@ -5,7 +5,7 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     public Transform t_Camera;
     private bool moveCam;
-    [SerializeField]private int velocidadeCamera = 5;
+    [SerializeField] private int velocidadeCamera = 7;
 
     void Start()
     {
@@ -14,21 +14,21 @@ public class DragDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 
     void Update()
     {
-        if(moveCam)
+        if (moveCam)
         {
-            if(gameObject.name == "BTN_Dir")
+            if (gameObject.name == "BTN_Dir")
             {
                 t_Camera.transform.position += Time.deltaTime * velocidadeCamera * Vector3.right;
                 print("Entrando");
             }
-            
-            if(gameObject.name == "BTN_Esq")
+
+            if (gameObject.name == "BTN_Esq")
             {
                 t_Camera.transform.position += Time.deltaTime * velocidadeCamera * Vector3.left;
                 print("Entrando");
             }
         }
-        
+
     }
 
     void IPointerDownHandler.OnPointerDown(UnityEngine.EventSystems.PointerEventData eventData)

@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753107316075990361}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.7537428, y: -0.6716526, z: 0.03392602}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &753107316075990362
 MonoBehaviour:
@@ -44,7 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b989c5d944fa204ba958e1df2f42564, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  faseID: 0
-  idFaseConcluida: 0
-  countTentativas: 0
-  bitEstrelas: 00000000000000000000000000000000000000000000000000000000000000000000000000000000
+  chavesPrefs:
+  - Estrela0
+  - Estrela1
+  - Estrela2
+  - Estrela3
+  - Estrela4
+  - Estrela5
+  - Estrela6
+  - Estrela7
+  - Estrela8
+  - Estrela9
+  txt_fps: {fileID: 0}
