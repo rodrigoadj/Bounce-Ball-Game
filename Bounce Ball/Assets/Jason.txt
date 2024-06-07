@@ -1,0 +1,8 @@
+{
+    "volumeAmbiente": 0,
+    "volumeGeral": 0,
+    "pos_Processamento": true,
+    "ligarFPS": true,
+    "intensidadeBloom": 5.0,
+    "DifusaoBloom": 0.0
+}

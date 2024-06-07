@@ -45534,12 +45534,17 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6008495392241350268, guid: 0d71c082ea38e204e99f7baaf861ce95, type: 3}
   m_PrefabInstance: {fileID: 1171958344}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1171958347}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1171958347 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7524472213591250368, guid: 0d71c082ea38e204e99f7baaf861ce95, type: 3}
+  m_PrefabInstance: {fileID: 1171958344}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1199167255
 GameObject:
   m_ObjectHideFlags: 0
@@ -61631,6 +61636,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4bca1a046aef0c41a61bd293f8f13d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  obj_FPS: {fileID: 1171958347}
+  postProcessLayer: {fileID: 1910353246}
   comecarJogo: 0
   movCamera: 0
   podeAtirar: 0

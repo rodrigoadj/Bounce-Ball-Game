@@ -1,3 +1,4 @@
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using UnityEngine.UI;
@@ -6,6 +7,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] GameObject obj_FPS;
+    [SerializeField] PostProcessLayer postProcessLayer;
     public static int contadorQuicada;
     public static bool venceu;
     public bool comecarJogo;
@@ -30,6 +33,8 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        obj_FPS.SetActive(JasonManager.fps_Ligar);
+        postProcessLayer.enabled = JasonManager.pos_Processamento;
         faseAtual = FaseID.faseID;
         painelVitoria.SetActive(false);
         painelProximaFase.SetActive(false);
