@@ -13,7 +13,6 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         intanceSound = GetComponent<SoundManager>();
-        audioReprodutorSource[0] = GetComponent<AudioSource>();
     }
 
     void Start()
@@ -69,5 +68,26 @@ public class SoundManager : MonoBehaviour
         audioReprodutorSource[1].clip = SFX_Outros[1];
         audioReprodutorSource[1].Play();
     }
+
+    public void PlayCarregar(int _rola)
+    {
+        if (_rola == 1)
+        {
+            audioReprodutorSource[0].clip = SFX_Outros[3];
+            audioReprodutorSource[0].Play();
+        }
+        else
+        {
+            audioReprodutorSource[0].Stop();
+        }
+    }
+
+    public void PlayTiro()
+    {
+        audioReprodutorSource[0].clip = SFX_Outros[2];
+        audioReprodutorSource[0].Play();
+    }
+
+
 
 }

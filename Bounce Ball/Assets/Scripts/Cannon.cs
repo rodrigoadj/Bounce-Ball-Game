@@ -10,9 +10,14 @@ public class Cannon : MonoBehaviour
     float time;
     GameManager gameManager;
     Vector2 direcao;
+    Animator aninCan;
+    bool tiroValido;
+
+    [SerializeField] AnimacaoMenu aninNim;
 
     void Start()
     {
+        aninCan = gameObject.transform.GetChild(1).GetComponent<Animator>();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         barraPotencia.transform.localScale = tamanhoInicialBarra;
     }
@@ -66,22 +71,40 @@ public class Cannon : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                recarregar++;
-                if (recarregar > 2)
-                    recarregar = 0;
+                if (bala == null)
+                {
+                    aninCan.SetTrigger("buttosE");
+                    tiroValido = true;
+                    aninCan.SetTrigger("buttosD");
+                }
+                else
+                {
+                    recarregar++;
+                    if (recarregar > 2)
+                        recarregar = 0;
+                }
+
+
             }
 
             if (gameManager.podeAtirar && !gameManager.movCamera)
             {
-
                 Potenciometro(direcao);
 
                 if (Input.GetMouseButtonUp(0))
                 {
-                    bala = Instantiate(prefab_Bala, cano.transform.position, quaternion.identity);
-                    Rigidbody2D rb_Bala = bala.GetComponent<Rigidbody2D>();
-                    rb_Bala.AddForce(direcao * 100, ForceMode2D.Force);
-                    Destroy(bala, 5);
+                    if (tiroValido)
+                    {
+                        tiroValido = false;
+                        if (bala == null)
+                            aninCan.SetTrigger("buttosD");
+                        StartCoroutine(aninNim.FadeIn("Cano", "Bum", 0.5f, 0));
+                        bala = Instantiate(prefab_Bala, cano.transform.position, quaternion.identity);
+                        Rigidbody2D rb_Bala = bala.GetComponent<Rigidbody2D>();
+                        SoundManager.intanceSound.PlayTiro();
+                        rb_Bala.AddForce(direcao * 100, ForceMode2D.Force);
+                        Destroy(bala, 5);
+                    }
                 }
             }
             else
@@ -89,6 +112,7 @@ public class Cannon : MonoBehaviour
                 barraPotencia.transform.localScale = tamanhoInicialBarra;
                 barraPotencia.SetActive(false);
             }
+
         }
 
 
@@ -97,8 +121,6 @@ public class Cannon : MonoBehaviour
 
     void Potenciometro(Vector2 _direcao)
     {
-        // if (_direcao.x <= 0)
-        //     barraPotencia.transform.localScale = new Vector2(0, 0.1f);
         if (_direcao.x > 0)
         {
             barraPotencia.SetActive(true);

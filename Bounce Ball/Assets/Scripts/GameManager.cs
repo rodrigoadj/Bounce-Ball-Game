@@ -7,8 +7,7 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] GameObject obj_FPS;
-    [SerializeField] PostProcessLayer postProcessLayer;
+    [SerializeField] GameObject obj_FPS, postProcessLayer;
     public static int contadorQuicada;
     public static bool venceu;
     public bool comecarJogo;
@@ -33,8 +32,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        obj_FPS.SetActive(JasonManager.fps_Ligar);
-        postProcessLayer.enabled = JasonManager.pos_Processamento;
+        ConfiguracaoGet();
         faseAtual = FaseID.faseID;
         painelVitoria.SetActive(false);
         painelProximaFase.SetActive(false);
@@ -62,6 +60,14 @@ public class GameManager : MonoBehaviour
             else
                 estrela.SetActive(false);
         }
+    }
+
+    void ConfiguracaoGet()
+    {
+        obj_FPS.SetActive(JasonManager.fps_Ligar);
+        postProcessLayer.SetActive(JasonManager.pos_ProcessamentoLigar);
+        SoundManager.intanceSound.audioReprodutorSource[0].volume = JasonManager.volume;
+        SoundManager.intanceSound.audioReprodutorSource[1].volume = JasonManager.volume;
     }
 
     void MostrarInformacao() // Implementar A UI
@@ -113,7 +119,8 @@ public class GameManager : MonoBehaviour
             {
                 btn_MovCam.interactable = false;
                 podeAtirar = false;
-                posCamera.position = Vector2.MoveTowards(posCamera.position, cannon.bala.transform.position, 1f);
+                //posCamera.position = Vector2.MoveTowards(posCamera.position, cannon.bala.transform.position, 1f);
+                posCamera.position = Vector2.Lerp(posCamera.position, cannon.bala.transform.position, 5f * Time.deltaTime);
             }
         }
     }

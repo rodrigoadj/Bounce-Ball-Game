@@ -6,13 +6,19 @@ using UnityEngine.UI;
 
 public class JasonManager : MonoBehaviour
 {
-    public static JasonManager instance;
     readonly string caminho = "Assets/Jason.txt";
+    public static JasonManager instance;
     public Jason jason;
     public static bool fps_Ligar;
     [SerializeField] Toggle toggle_FPS;
-    public static bool pos_Processamento;
     [SerializeField] GameObject obj_FPS;
+    public static bool pos_ProcessamentoLigar;
+    [SerializeField] Toggle toggle_PosProcessamento;
+    [SerializeField] GameObject obj_PosProcessamento;
+    [SerializeField] Slider slider_Audio;
+
+    public static float volume;
+
 
     void Start()
     {
@@ -36,11 +42,20 @@ public class JasonManager : MonoBehaviour
 
     void AplicarConfig()
     {
-        pos_Processamento = jason.pos_Processamento;
         fps_Ligar = jason.ligarFPS;
         toggle_FPS.isOn = jason.ligarFPS;
-
         obj_FPS.SetActive(jason.ligarFPS);
+
+        pos_ProcessamentoLigar = jason.ligarPos_Processamento;
+        toggle_PosProcessamento.isOn = jason.ligarPos_Processamento;
+        obj_PosProcessamento.SetActive(jason.ligarPos_Processamento);
+
+        volume = jason.volumeGeral;
+        slider_Audio.value = jason.volumeGeral;
+        SoundManager.intanceSound.audioReprodutorSource[0].volume = jason.volumeGeral;
+        SoundManager.intanceSound.audioReprodutorSource[1].volume = jason.volumeGeral;
+
+
     }
 
     void SalvarConfig()
@@ -52,6 +67,20 @@ public class JasonManager : MonoBehaviour
     public void FPS_LigarSet()
     {
         jason.ligarFPS = toggle_FPS.isOn;
+    }
+
+    public void Pos_ProcessamentoSet()
+    {
+        jason.ligarPos_Processamento = toggle_PosProcessamento.isOn;
+    }
+
+    public void VolumeSet()
+    {
+        jason.volumeGeral = slider_Audio.value;
+    }
+
+    public void BTN_Aplicar()
+    {
         SalvarConfig();
         AplicarConfig();
     }

@@ -15,6 +15,8 @@ public class MenuScript : MonoBehaviour
     [SerializeField] private AnimacaoMenu animMenu;
     public GameObject[] filhos;
 
+    [SerializeField] GameObject obj_creditos;
+
     void Start()
     {
         GeraBarreira();
@@ -33,6 +35,36 @@ public class MenuScript : MonoBehaviour
     {
         if (animMenu.boolTemporizada)
             painel_Fases.SetActive(true);
+
+        if (obj_creditos.activeInHierarchy)
+        {
+            if (Input.GetMouseButton(0))
+            {
+                if (obj_creditos.GetComponent<RectTransform>().anchoredPosition.y > 2200)
+                {
+                    Vector2 posToque = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    obj_creditos.transform.position += new Vector3(0, -10, 0);
+                }
+                else
+                {
+                    Vector2 posToque = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    obj_creditos.transform.position += new Vector3(0, posToque.y * Time.deltaTime * 2, 0);
+                }
+
+                if (obj_creditos.GetComponent<RectTransform>().anchoredPosition.y < -500)
+                {
+                    Vector2 posToque = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    obj_creditos.transform.position += new Vector3(0, +3, 0);
+                }
+                else
+                {
+                    Vector2 posToque = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                    obj_creditos.transform.position += new Vector3(0, posToque.y * Time.deltaTime * 2, 0);
+                }
+
+
+            }
+        }
     }
 
     void ArmazenaFases()
@@ -95,18 +127,18 @@ public class MenuScript : MonoBehaviour
     public void Créditos() //créditos SFX
     {
         /*
-        https://pixabay.com/pt/sound-effects/hitech-logo-165392/
-        https://pixabay.com/pt/sound-effects/life-in-a-droplet-128269/
-        https://pixabay.com/pt/sound-effects/dripping-water-nature-sounds-8050/
-        https://pixabay.com/pt/sound-effects/selection-sounds-73225/
-        https://pixabay.com/pt/sound-effects/electronic-hit-98242/
-        https://pixabay.com/pt/sound-effects/interface-1-126517/
-        https://pixabay.com/pt/sound-effects/paft-drunk-drums-efx-1574-206584/
-        https://pixabay.com/pt/sound-effects/riser-and-hit-194451/
-        https://pixabay.com/pt/sound-effects/electronic-glitter-68293/
-        https://pixabay.com/pt/sound-effects/echo-chime-chime-89653/
-        https://pixabay.com/pt/sound-effects/short-echo-fart-185251/
-        https://pixabay.com/pt/sound-effects/paft-drunk-drums-efx-1574-206584/
+        Slow Trap by Anton_Vlasov: https://pixabay.com/pt/music/batidas-slow-trap-18565/
+        Midnight Forest by Syouki Takahashi: https://pixabay.com/pt/music/ambiente-midnight-forest-184304/
+        Otimista Movement by SoulProdMusic: https://pixabay.com/pt/music/otimista-movement-200697/
+        Ambient Metal Whoosh 2 by Floraphonic: https://pixabay.com/pt/sound-effects/ambient-metal-whoosh-2-174462/
+        Life In A Droplet by drebddronefish: https://pixabay.com/pt/sound-effects/life-in-a-droplet-128269/
+        Selection Sounds by Pixabay: https://pixabay.com/pt/sound-effects/selection-sounds-73225/
+        Blaster 2 by Pixabay: https://pixabay.com/pt/sound-effects/blaster-2-81267/
+        Eletronic Hit by Pixabay: https://pixabay.com/pt/sound-effects/electronic-hit-98242/
+        Futuristic Beam by Pixabay: https://pixabay.com/pt/sound-effects/futuristic-beam-81215/
+        Eletronic Glitter by Pixabay: https://pixabay.com/pt/sound-effects/electronic-glitter-68293/
+        Interface 1 by UNIVERSFIELD: https://pixabay.com/pt/sound-effects/interface-1-126517/
+        Ghosts On Film by UNIVERSFIELD: https://pixabay.com/pt/sound-effects/ghosts-on-film-185898/
         */
 
     }
