@@ -40,7 +40,7 @@ public class MenuScript : MonoBehaviour
         {
             if (Input.GetMouseButton(0))
             {
-                if (obj_creditos.GetComponent<RectTransform>().anchoredPosition.y > 2200)
+                if (obj_creditos.GetComponent<RectTransform>().anchoredPosition.y > 2500)
                 {
                     Vector2 posToque = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                     obj_creditos.transform.position += new Vector3(0, -10, 0);

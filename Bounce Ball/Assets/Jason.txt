@@ -1,7 +1,0 @@
-{
-    "volumeGeral": 0.1835092306137085,
-    "ligarPos_Processamento": true,
-    "ligarFPS": false,
-    "intensidadeBloom": 5.0,
-    "DifusaoBloom": 0.0
-}

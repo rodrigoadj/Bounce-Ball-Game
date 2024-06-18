@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class JasonManager : MonoBehaviour
 {
-    readonly string caminho = "Assets/Jason.txt";
+    string caminho = "Jason.txt";
     public static JasonManager instance;
     public Jason jason;
     public static bool fps_Ligar;
@@ -22,6 +22,7 @@ public class JasonManager : MonoBehaviour
 
     void Start()
     {
+        caminho = Path.Combine(Application.persistentDataPath, caminho);
         instance = this;
         CarregarConfig();
         AplicarConfig();
