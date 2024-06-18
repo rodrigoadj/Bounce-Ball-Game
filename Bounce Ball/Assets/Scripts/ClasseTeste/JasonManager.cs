@@ -23,6 +23,7 @@ public class JasonManager : MonoBehaviour
     void Start()
     {
         caminho = Path.Combine(Application.persistentDataPath, caminho);
+        Debug.Log(caminho);
         instance = this;
         CarregarConfig();
         AplicarConfig();
@@ -41,6 +42,11 @@ public class JasonManager : MonoBehaviour
         }
     }
 
+    private void OnApplicationQuit()
+    {
+        SalvarConfig();
+    }
+
     void AplicarConfig()
     {
         fps_Ligar = jason.ligarFPS;
@@ -55,8 +61,6 @@ public class JasonManager : MonoBehaviour
         slider_Audio.value = jason.volumeGeral;
         SoundManager.intanceSound.audioReprodutorSource[0].volume = jason.volumeGeral;
         SoundManager.intanceSound.audioReprodutorSource[1].volume = jason.volumeGeral;
-
-
     }
 
     void SalvarConfig()

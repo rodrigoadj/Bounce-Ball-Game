@@ -166,15 +166,15 @@ public class MenuScript : MonoBehaviour
         switch (chave)
         {
             case 1:
-                txt_popUp.text = "Você deseja mesmo apagar tudo?";
+                txt_popUp.text = "Do you really want to delete everything?";
                 break;
 
             case 2:
-                txt_popUp.text = "Ultima chance para voltar atrás. Você tem certeza?";
+                txt_popUp.text = "Last chance to go back. Are you sure?";
                 break;
 
             case 3:
-                txt_popUp.text = "Registros apagados com sucesso";
+                txt_popUp.text = "Successfully deleted records";
                 PlayerPrefs.DeleteAll();
                 fasesConcluidas = 0;
                 chave = 0;

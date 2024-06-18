@@ -175,7 +175,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &42995369
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1172,8 +1172,8 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 42412339}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 30, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5246,7 +5246,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Grafics
+  m_text: Graphics
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8055,7 +8055,7 @@ RectTransform:
   m_Father: {fileID: 2125204522}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -9690,8 +9690,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Game developed by\nRodrigo Anuncia\xE7\xE3o de Jesus\n\nSFX and Musics\n\nGhosts
-    On Film by UNIVERSFIELD\n https://pixabay.com/pt/sound-effects/ghosts-on-film-185898/\n\nInterface
+  m_text: "Game developed by\nRodrigo Anuncia\xE7\xE3o de Jesus\n\nData saving system
+    by\n\xCDcaro Cedro\n\nSFX and Musics\n\nGhosts On Film by UNIVERSFIELD\n https://pixabay.com/pt/sound-effects/ghosts-on-film-185898/\n\nInterface
     1 by UNIVERSFIELD\n https://pixabay.com/pt/sound-effects/interface-1-126517/\n\nFuturistic
     Beam by Pixabay\n https://pixabay.com/pt/sound-effects/futuristic-beam-81215/\n\nEletronic
     Hit by Pixabay\n https://pixabay.com/pt/sound-effects/electronic-hit-98242/\n\nBlaster
@@ -9701,7 +9701,7 @@ MonoBehaviour:
     Metal Whoosh 2 by Floraphonic\n https://pixabay.com/pt/sound-effects/ambient-metal-whoosh-2-174462/\n\nOtimista
     Movement by SoulProdMusic\n https://pixabay.com/pt/music/otimista-movement-200697/\n\nMidnight
     Forest by Syouki Takahashi\n https://pixabay.com/pt/music/ambiente-midnight-forest-184304/\n\nSlow
-    Trap by Anton_Vlasov\n https://pixabay.com/pt/music/batidas-slow-trap-18565/\n\n\n\n\nIf
+    Trap by Anton_Vlasov\n https://pixabay.com/pt/music/batidas-slow-trap-18565/\n\n\nIf
     by chance I forgot to give you credit here, please contact me."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
