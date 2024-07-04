@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
 
     void GanhouJogo()
     {
-        if (faseAtual == 4)
+        if (faseAtual == 10)
         {
             painelVitoria.SetActive(true);
             comecarJogo = false;            //TRAVA TUDO, SERVE APENAR PARA FINALIZAR O GAME <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
