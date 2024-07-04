@@ -1,4 +1,4 @@
-# Bounce-Ball-Game
+# Bounce-Ball-Game [Finalizado]
 Esse projeto será publicado e divulgado como um projeto complementar de ACCs (Atividades Complementares) para conclusão da minha faculdade.
 Nesse projeto eu busco aprender mais sobre animação 2D priorizando formas geométricas.
 
@@ -50,7 +50,7 @@ A ideia aqui é desenvolver um jogo completo, mobile, que eu possa manipular os 
 - [x]  Contador de tentativas
 - [x]  Indicador de Estrelas por fase
 - [x]  Mudança de cores do cenário
-- [ ]  Animação ao Disparar
+- [x]  Animação ao Disparar
 - [x]  Animação de Menus
 - [x]  Animação de Vitória (Opcional)
 - [x]  Transição de Cenas
@@ -58,7 +58,6 @@ A ideia aqui é desenvolver um jogo completo, mobile, que eu possa manipular os 
 - [x]  Efeitos sonoros
 - [x]  Música do jogo
 - [x]  Efeitos sonoros do menu e HUD
-- [ ]  Tradução (Para o Final)(Opcional)
 - [x]  Visual do Menu
 - [x]  Visual da HUD
 - [x]  Visual do Menu de Fases
